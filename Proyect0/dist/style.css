@@ -3,10 +3,14 @@
   padding: 1%;
 }
 #upper-right a {
+  color: black;
+  padding: 1%;
+}
+#upper-right a:hover {
   color: red;
 }
 
-.container {
+#container {
   text-align: center;
   margin-top: 150px;
 }
@@ -23,7 +27,11 @@
 }
 
 .search-submit {
-  width: 300px;
+  width: 150px;
   margin: 0 auto;
   margin-top: 8px;
+}
+.search-submit input:hover {
+  color: white;
+  background-color: red;
 }
