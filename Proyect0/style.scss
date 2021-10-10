@@ -1,0 +1,33 @@
+$color: black;
+$color2: red;
+
+#upper-right{
+    text-align: right;
+    padding: 1%;
+    a{
+        color: $color2;
+    }
+}
+
+.container{
+    text-align:center;
+    margin-top:150px;
+}
+
+.search{
+    width:340px;
+    // margin: 0 auto;
+    font-size:14px;
+    border: 3px solid $color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 25px;
+}
+
+.search-submit{
+    width: 300px;
+    margin: 0 auto;
+    margin-top:8px;
+}

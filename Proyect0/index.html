@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="dist/style.css">
         <title>Search</title>
     </head>
     <body>
-        <div style="text-align: right;">
-            <a href="https://images.google.com/">Google Image Search</a>
+        <!-- <div style="text-align: right;"> -->
+        <div id=upper-right>
+            <a href="GIS.html">Google Image Search</a>
+            <a style="color: blue;" href="GIS.html">Google Advanced Search</a>
         </div>
         
-        <div style="text-align: center;">
+        <div class="container">
             <form action="https://google.com/search">
-                <input type="text" name="q">
-                <input type="submit" value="Google Search">
+                <div>
+                    <input class="search" type="text" name="q">
+                </div>
+                <div class="search-submit">
+                    <input type="submit" value="Google Search">
+                </div>
             </form>
         </div>
     </body>
