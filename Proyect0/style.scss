@@ -1,5 +1,6 @@
-$color: black;
+$color: blue;
 $color2: red;
+$color3: black;
 
 #upper-right{
     text-align: right;
@@ -20,9 +21,8 @@ $color2: red;
 
 .search{
     width:340px;
-    // margin: 0 auto;
     font-size:14px;
-    border: 3px solid $color;
+    border: 3px solid $color3;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 15px;
@@ -34,7 +34,7 @@ $color2: red;
     width: 150px;
     margin: 0 auto;
     margin-top:8px;
-    
+
     input:hover{
         color: white;
         background-color: $color2;
