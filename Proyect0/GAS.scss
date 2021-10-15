@@ -51,11 +51,17 @@
     padding-top: 1px;
     padding-bottom: 1px;
     padding-left: 5px;;
+}
 
-    // float: left;
-    // display: inline-block;
-    // min-width: 167px;
-    // min-height: 41px;
-    // vertical-align: middle;
-    // width: 98%;
+.search-submit-advance{
+    text-align: right;
+    padding-top: 15px;
+    input{
+        background-color: rgb(20, 122, 238);
+        color: white;
+    }
+
+    input:hover{
+        background-color:rgb(7, 82, 168);
+    }
 }
