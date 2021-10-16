@@ -1,3 +1,8 @@
+@media (max-width: 1056px) {
+  .import-display {
+    display: none !important;
+  }
+}
 .appbar {
   color: #d93025;
   font-size: 20px;
@@ -19,7 +24,7 @@
   display: grid;
   grid-column-gap: 10px;
   grid-row-gap: 5px;
-  grid-template-columns: 150px auto auto;
+  grid-template-columns: 180px auto auto;
 }
 
 .gridgas {
@@ -30,8 +35,14 @@
   font-size: 16px;
 }
 
+.p_tt {
+  font-family: arial, sans-serif;
+}
+
 .p_tet {
-  font-size: 14px;
+  height: 30px;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .p_text {
@@ -39,8 +50,8 @@
 }
 
 .search_ad {
-  width: 98%;
-  border: 2px solid black;
+  width: 650px;
+  border: 1px solid #c6c6c6;
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -51,9 +62,12 @@
   padding-top: 15px;
 }
 .search-submit-advance input {
-  background-color: #147aee;
+  background-color: #4d90fe;
   color: white;
+  border: none;
+  height: 30px;
+  min-width: 120px;
 }
 .search-submit-advance input:hover {
-  background-color: #0752a8;
+  background-color: #4787ed;
 }
