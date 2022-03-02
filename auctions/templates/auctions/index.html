@@ -1,0 +1,41 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <!-- <h2>Active Users</h2> -->
+    <!-- {% for user in users %}
+        <li>User {{user.id}}: {{user.username}}</li>
+    {% endfor %} -->
+    <ul>
+        {% for Close_Listing in Close_Listings %}
+            {% if Close_Listing.userbid == user.username %}
+                <div class="alert alert-success">
+                    <strong>Success!</strong> {{Close_Listing.userbid}}, you won 
+                    <a href="/Close_Listing/{{Close_Listing.Listings_id}}" class="alert-link">
+                        the {{Close_Listing.title}} auction.
+                    </a>.
+                </div>
+            {% endif %}
+            {% empty %}
+        {% endfor %}
+    </ul>
+    <h2>Active Listings</h2>
+
+    <div class="container">
+        <div class="row">
+            {% for Active_Listing in Active_Listings %}
+                <div class="col">
+                    <a class="nav-link" href="/listings/{{Active_Listing.id}}">
+                        <img src="{{Active_Listing.URL_image}}" alt="No image" width="300" height="400">
+                    </a>
+                    <a class="nav-link" href="/listings/{{Active_Listing.id}}"> 
+                        <h2>{{Active_Listing.title}}</h2>
+                    </a> 
+                    <p class="nav-link">Current price $ {{Active_Listing.starting_bid}}.00</p>
+                    <p class="nav-link">Description: {{Active_Listing.description}}</p>
+                    <!-- <p>Listing create by ={{Active_Listing.user}}</p> -->
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row row-cols-2">
+
+        <div class="nav-link col">
+            <img src="{{Active.URL_image}}" width="550" height="500">
+        </div>
+
+        <div class="nav-link col">
+            <form action="{% url 'watchlist' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="hidden" name="watchlist" value="{{Active.id}}">
+                    <input class="btn btn-primary" type="submit" value="Watchlist">
+                </div>
+            </form>
+            <h1> {{Active.title}}</h1>
+            <h4 class="nav-link"> Description: {{Active.description}}</h4>
+            <h4 class="nav-link"> Category: {{Active.category}}</h4>
+            <h4 class="nav-link"> Current price: ${{max_bid}}.00</h4>
+            <h5 class="nav-link"> Listing create by: {{Active.user}}</h5>
+            <!-- close the auctions-->
+            {% if user.is_authenticated %}
+                {% if Active.user.username == user.username %}
+                    <h4 class="nav-link col">Do you want to close the auction?</h4>
+                    <form action="{% url 'close_action' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="hidden" name="close" value="{{Active.id}}">
+                            <input class="btn btn-primary" type="submit" value="Close auction">
+                        </div>
+                    </form>
+                {% endif %}
+            {% endif %}
+            <!-- end close the auctions -->
+        </div>
+    </div>
+</div>
+
+    {% if error %}
+        <div class="container alert alert-danger">
+            <strong>The bid must be at least as large as the current bid!</strong>
+        </div>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+            <!--Add bid  -->
+        <form action="/listings/{{Active.id}}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="container ">
+                    <div class="row row-cols-2">
+                        <div class="col">
+                            <input class="form-control" type="number" name="bid" placeholder="Add your bid">
+                        </div>
+                        <div class="col">
+                            <input class="btn btn-primary" type="submit" value="Place Bid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add comment -->
+            <div class="form-group">
+                <div class="container ">
+                    <div class="row row-cols-2">
+                        <div class="col" style="height: 100px">
+                            <input class="form-control h-100  d-inline-block" type="text" name="coment" placeholder="Add your comments to the listing page">
+                        </div>
+                        <div class="col">
+                            <input class="btn btn-primary" type="submit" value="Coment">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="container">
+            <ol>
+                {% for New_Coment in New_Coments %}
+                    {% if Active_id == New_Coment.usercoment %}
+                        {{New_Coment.user}}
+                        <li>{{New_Coment.coment}}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {% if flag_categories %}
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <h2>Active Categories.</h2>
+                    <ol>
+                        {% for Active_Categorie in Active_Categories %}
+                            <div class="alert alert-primary " role="alert">
+                                <li>
+                                    <a class="nav-link" href="/categories/{{Active_Categorie}}">
+                                        <h4 style="letter-spacing: 20px;">{{Active_Categorie}}</h4>
+                                    </a>
+                                </li>
+                            </div>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    {% else %}
+    <h3>Category {{Active_Listings.category}}</h3>
+    <div class="container">
+        <div class="row row-cols-2">
+            <div class="col">
+                <ol>
+                    {% for Active_Listing in Active_Listings %}
+                        <li><a class="nav-link" href="/listings/{{Active_Listing.id}}">
+                            <img src="{{Active_Listing.URL_image}}" width="200" height="200">
+                            </a> 
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div class="col">
+                {% for Active_Listing in Active_Listings %}
+                    <h1 class="nav-link"> {{Active_Listing.title}}</h1>
+                    <h5 class="nav-link"> Category: {{Active_Listing.category}}</h5>
+                    <h5 class="nav-link"> Current price: ${{Active_Listing.starting_bid}}</h5>
+                    <h6 class="nav-link"> Description: {{Active_Listing.description}}</h6>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
