@@ -199,44 +199,44 @@ function load_mailbox(mailbox) {
           // code block
           console.log("inbox")
           emails.forEach(item => {
+            item.recipients.forEach(recipient =>{
+              if (heading.innerHTML == recipient) {
+                const boxOne = document.createElement('div');
+                boxOne.classList.add('sender');
+                if (item.read == true) {boxOne.classList.add('gray');}
+                boxOne.innerHTML = `${item.sender}`;
+                ///////////////////////////////////////
+                boxOne.addEventListener('click', function() {view_email(item.id)});
+                ///////////////////////////////////////
+                document.querySelector('#emails-view').append(boxOne);
+                
+                const boxTwo = document.createElement('div');
+                boxTwo.classList.add('subject');
+                if (item.read == true) {boxTwo.classList.add('gray');}
+                boxTwo.innerHTML = `${item.subject}`;
+                boxTwo.addEventListener('click', function() {view_email(item.id)});
+                document.querySelector('#emails-view').append(boxTwo);
 
-            if (heading.innerHTML != item.sender) {
+                const boxThree = document.createElement('div');
+                boxThree.classList.add('timestamp');
+                if (item.read == true) {boxThree.classList.add('gray');}
+                boxThree.innerHTML = `${item.timestamp}`;
+                boxThree.addEventListener('click', function() {view_email(item.id)});
+                document.querySelector('#emails-view').append(boxThree);
 
-              const boxOne = document.createElement('div');
-              boxOne.classList.add('sender');
-              if (item.read == true) {boxOne.classList.add('gray');}
-              boxOne.innerHTML = `${item.sender}`;
-              ///////////////////////////////////////
-              boxOne.addEventListener('click', function() {view_email(item.id)});
-              ///////////////////////////////////////
-              document.querySelector('#emails-view').append(boxOne);
-              
-              const boxTwo = document.createElement('div');
-              boxTwo.classList.add('subject');
-              if (item.read == true) {boxTwo.classList.add('gray');}
-              boxTwo.innerHTML = `${item.subject}`;
-              boxTwo.addEventListener('click', function() {view_email(item.id)});
-              document.querySelector('#emails-view').append(boxTwo);
-
-              const boxThree = document.createElement('div');
-              boxThree.classList.add('timestamp');
-              if (item.read == true) {boxThree.classList.add('gray');}
-              boxThree.innerHTML = `${item.timestamp}`;
-              boxThree.addEventListener('click', function() {view_email(item.id)});
-              document.querySelector('#emails-view').append(boxThree);
-
-              const checkBox = document.createElement('INPUT');
-              checkBox.setAttribute("type", "button");
-              checkBox.setAttribute("value", "Archive");
-              checkBox.classList.add('btn');
-              checkBox.classList.add('btn-sm');
-              checkBox.classList.add('btn-outline-primary');
-              checkBox.classList.add('archive');
-              if (item.read == true) {checkBox.classList.add('gray');}
-              checkBox.addEventListener('click', function() {put_archived(item.id, value=true)});
-              document.querySelector('#emails-view').append(checkBox);
-
-            }
+                const checkBox = document.createElement('INPUT');
+                checkBox.setAttribute("type", "button");
+                checkBox.setAttribute("value", "Archive");
+                checkBox.classList.add('btn');
+                checkBox.classList.add('btn-sm');
+                checkBox.classList.add('btn-outline-primary');
+                checkBox.classList.add('archive');
+                if (item.read == true) {checkBox.classList.add('gray');}
+                checkBox.addEventListener('click', function() {put_archived(item.id, value=true)});
+                document.querySelector('#emails-view').append(checkBox);
+              }
+            });
+            
           });
           break;
         case 'sent':
@@ -244,10 +244,9 @@ function load_mailbox(mailbox) {
           console.log("sent")
           emails.forEach(item => {
             item.recipients.forEach(recipient =>{
-
               const boxOne = document.createElement('div');
               boxOne.classList.add('sender');
-              boxOne.innerHTML = `${recipient}`;
+              boxOne.innerHTML = `${item.sender}`;
               document.querySelector('#emails-view').append(boxOne);
 
               const boxTwo = document.createElement('div');
@@ -265,49 +264,44 @@ function load_mailbox(mailbox) {
         case 'archive':
           // code block
           console.log("archive")
-
-
-          ///////////////////////////////////
           emails.forEach(item => {
+            item.recipients.forEach(recipient =>{
+              if (heading.innerHTML == recipient) {
+                const boxOne = document.createElement('div');
+                boxOne.classList.add('sender');
+                if (item.read == true) {boxOne.classList.add('gray');}
+                boxOne.innerHTML = `${item.sender}`;
+                ///////////////////////////////////////
+                boxOne.addEventListener('click', function() {view_email(item.id)});
+                ///////////////////////////////////////
+                document.querySelector('#emails-view').append(boxOne);
+                
+                const boxTwo = document.createElement('div');
+                boxTwo.classList.add('subject');
+                if (item.read == true) {boxTwo.classList.add('gray');}
+                boxTwo.innerHTML = `${item.subject}`;
+                boxTwo.addEventListener('click', function() {view_email(item.id)});
+                document.querySelector('#emails-view').append(boxTwo);
 
-            if (heading.innerHTML != item.sender && item.archived == true) {
+                const boxThree = document.createElement('div');
+                boxThree.classList.add('timestamp');
+                if (item.read == true) {boxThree.classList.add('gray');}
+                boxThree.innerHTML = `${item.timestamp}`;
+                boxThree.addEventListener('click', function() {view_email(item.id)});
+                document.querySelector('#emails-view').append(boxThree);
 
-              const boxOne = document.createElement('div');
-              boxOne.classList.add('sender');
-              if (item.read == true) {boxOne.classList.add('gray');}
-              boxOne.innerHTML = `${item.sender}`;
-              ///////////////////////////////////////
-              boxOne.addEventListener('click', function() {view_email(item.id)});
-              ///////////////////////////////////////
-              document.querySelector('#emails-view').append(boxOne);
-              
-              const boxTwo = document.createElement('div');
-              boxTwo.classList.add('subject');
-              if (item.read == true) {boxTwo.classList.add('gray');}
-              boxTwo.innerHTML = `${item.subject}`;
-              boxTwo.addEventListener('click', function() {view_email(item.id)});
-              document.querySelector('#emails-view').append(boxTwo);
-
-              const boxThree = document.createElement('div');
-              boxThree.classList.add('timestamp');
-              if (item.read == true) {boxThree.classList.add('gray');}
-              boxThree.innerHTML = `${item.timestamp}`;
-              boxThree.addEventListener('click', function() {view_email(item.id)});
-              document.querySelector('#emails-view').append(boxThree);
-
-              const checkBox = document.createElement('INPUT');
-              checkBox.setAttribute("type", "button");
-              checkBox.setAttribute("value", "Unarchived");
-              checkBox.classList.add('btn');
-              checkBox.classList.add('btn-sm');
-              checkBox.classList.add('btn-outline-primary');
-              if (item.read == true) {checkBox.classList.add('gray');}
-              checkBox.addEventListener('click', function() {put_archived(item.id, value=false)});
-              document.querySelector('#emails-view').append(checkBox);
-
-            }
+                const checkBox = document.createElement('INPUT');
+                checkBox.setAttribute("type", "button");
+                checkBox.setAttribute("value", "Unarchived");
+                checkBox.classList.add('btn');
+                checkBox.classList.add('btn-sm');
+                checkBox.classList.add('btn-outline-primary');
+                if (item.read == true) {checkBox.classList.add('gray');}
+                checkBox.addEventListener('click', function() {put_archived(item.id, value=false)});
+                document.querySelector('#emails-view').append(checkBox);
+              }
+            });
           });
-          ///////////////////////////////////
           break;
         default:
           // code block

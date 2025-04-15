@@ -3,6 +3,7 @@ textarea {
 }
 
 body{
+    margin: 30px;
     background-color: white;
 }
 
@@ -52,4 +53,12 @@ h3 {
     width: 100%;
     height: 50px;
     text-align: left;
+ }
+
+ .form-group{
+    width: 300px;
+ }
+
+ .from-login{
+  padding-left: 30%;
  }
