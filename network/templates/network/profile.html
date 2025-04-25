@@ -1,0 +1,59 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block body %}
+
+    <h2>Profile</h2>
+    <div id="page-1">
+        {% for post in posts %}
+            <div class="postDiv">
+                <p id="pk" accessKey={{post.id}} style="display: none;">{{post.id}}</p>
+                <p><strong>User:</strong></p>
+                <p>{{post.user}}</p>
+                <p class="pHide" accessKey={{post.id}}><strong>Title:</strong></p>
+                <p id="valueTitle" class="pHide" accessKey={{post.id}}>{{post.title}}</p>
+                <p class="pHide" accessKey={{post.id}}><strong>Content:</strong></p>
+                <p id="valueContent" class="pHide" accessKey={{post.id}}>{{post.body}}</p>
+
+                {% if post.user.id == user.id %}
+
+                    <div id="edit_form" accessKey={{post.id}}>
+                        <form action="{% url 'edit_post' %}" method="post">
+                            {% csrf_token %}
+                            {{EditPostForm}}
+                            <input type="submit" value="Save" class="btn btn-primary">
+                        </form>
+                    </div>
+
+                {% endif %}
+
+                <p><strong>Date:</strong></p>
+                <p>{{post.timestamp}}</p>
+                <p><strong>User follows: </strong></p>
+                <p><i class="material-icons" style="font-size:16px;color:rgb(46, 141, 66);">cloud</i> {{userYouFollowId}}</p>
+                <p><strong>Followers: </strong></p>
+                <p><i class="material-icons" style="font-size:16px;color:red;">favorite</i> {{num_followers}}</p>
+            
+                {% if post.user.id != user.id %}
+                    <form action="{% url 'profile' post.user.id %}" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        {% if follow %}
+                            <input type="submit" name="Follow" value="Unfollow" class="btn btn-primary">
+                        {% else %}
+                            <input type="submit" name="Follow" value="Follow" class="btn btn-primary">
+                        {% endif %}
+                    </form>
+                {% endif %}
+
+                {% if post.user.id == user.id %}
+                    <button id="edit_post" data-edit = {{post.id}} class="btn btn-primary">Edit</button>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No post</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+

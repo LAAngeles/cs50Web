@@ -1,0 +1,29 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block title %}Following{% endblock %}
+{% block msg %}<h2>Following</h2>{% endblock msg %}
+{% block body %}
+
+    <div id="page-1">
+        {% for post in posts %}
+            <div class="postDiv">
+                <a href="{% url 'profile' post.user.id %}"><p>{{post.user}}</p></a>
+                <p>{{post.title}}</p>
+                <p>{{post.body}}</p>
+                <p>{{post.timestamp}}</p>
+                <i class="material-icons" style="font-size:16px;color:red;">favorite</i>
+                <p>{{post.num_likes}}</p>
+            </div>
+        {% empty %}
+            <p>No Following</p>
+        {% endfor %}
+    </div>
+
+    {% if num_posts > 10  %}
+        <div>
+            <button id="Next">Next</button>
+        </div>
+    {% endif %}
+
+{% endblock %}
+

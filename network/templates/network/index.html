@@ -1,0 +1,43 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block msg %}<h2>All post</h2>{% endblock msg %}
+{% block body %}
+
+<div id="index-Next"><div id="page-1"></div></div>
+<div id="index-AllPost">
+    <div id="page-1">
+
+        {% for post in posts %}
+            <div class="postDiv">
+                <a href="{% url 'profile' post.user.id %}"><p>{{post.user}}</p></a>
+                <p id="post-user_id" style="display: none;">{{user.id}}</p>
+                <p>{{post.title}}</p>
+                <p>{{post.body}}</p>
+                <p>{{post.timestamp}}</p>
+                {% if user.is_authenticated %}
+
+                    <i class="material-icons" style="font-size:16px;color:red;">favorite</i>
+                    <p class="plusLike" accessKey={{post.id}}>{{post.num_likes}} </p>
+                    <button id="Like"  class="btn btn-sm btn-outline-primary"  data-post_id = {{post.id}} value="True">Like</button>
+
+                    {% for user_like in user_likes %}
+                        {% if post.id == user_like.post_id %}
+                            {% if user_like.likeUnlike == True %}
+                                <button id="UnLike" class="btn btn-sm btn-outline-primary" data-post_id = {{post.id}} value="False">UnLike</button>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No post</p>
+        {% endfor %}
+
+        {% if num_posts > 10  %}
+            <div>
+                <button id="Next" class="btn btn-primary">Next</button>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
